@@ -22,5 +22,10 @@ namespace Managers.Managers
             _postRepository.Create(post);
             _postRepository.SaveChanges();
         }
+
+        public IEnumerable<Post> GetAll()
+        {
+            return _postRepository.GetAll();
+        }
     }
 }

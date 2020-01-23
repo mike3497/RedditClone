@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.Models;
+using Managers.Managers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +10,18 @@ namespace FrontEnd.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly PostManager _postManager;
+
+        public HomeController(PostManager postManager)
+        {
+            _postManager = postManager;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var posts = _postManager.GetAll();
+
+            return View(posts);
         }
 
         public ActionResult About()
