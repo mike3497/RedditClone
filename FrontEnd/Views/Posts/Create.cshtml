@@ -12,12 +12,17 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Title)
         @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "small text-danger"})
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Content)
-        @Html.TextAreaFor(m => m.Content, new { @class = "form-control" })
+        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @cols= 80, @rows = 10})
+        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "small text-danger" })
     </div>
 
-    <button type="submit" class="btn btn-primary">Create Post</button>
+    @Html.HiddenFor(m => m.UserId)
+
+    <a href="@Url.Action("Index", "Home")" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
+    <button type="submit" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Post</button>
 }

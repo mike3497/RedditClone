@@ -17,15 +17,37 @@ namespace Managers.Managers
             _postRepository = postRepository;
         }
 
+        public IEnumerable<Post> GetAll()
+        {
+            return _postRepository.GetAll();
+        }
+
         public void Create(Post post)
         {
             _postRepository.Create(post);
             _postRepository.SaveChanges();
         }
 
-        public IEnumerable<Post> GetAll()
+        public Post Read(int id)
         {
-            return _postRepository.GetAll();
+            return _postRepository.Read(id);
+        }
+
+        public void Update(Post post)
+        {
+            _postRepository.Update(post);
+            _postRepository.SaveChanges();
+        }
+
+        public void Delete(int id)
+        {
+            _postRepository.Delete(id);
+            _postRepository.SaveChanges();
+        }
+
+        public bool Exists(int id)
+        {
+            return _postRepository.Exists(id);
         }
     }
 }

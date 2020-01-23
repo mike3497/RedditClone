@@ -27,7 +27,10 @@ namespace FrontEnd.Controllers
 
         public ActionResult Create()
         {
-            Post post = new Post();
+            Post post = new Post
+            {
+                UserId = User.Identity.GetUserId()
+            };
 
             return View(post);
         }
@@ -36,8 +39,6 @@ namespace FrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Post post)
         {
-            post.UserId = User.Identity.GetUserId();
-
             if (!ModelState.IsValid)
             {
                 return View(post);    

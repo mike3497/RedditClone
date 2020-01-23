@@ -16,35 +16,45 @@ namespace DataAccess.Repositories
         {
             _connection = connection;
         }
-        
-        public void Create(Post item)
-        {
-            _connection.Posts.Add(item);
-        }
-
-        public void Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
-            _connection.Dispose();
-        }
-
-        public bool Exists(int id)
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<Post> GetAll()
         {
             return _connection.Posts.ToList();
         }
 
+        public void Create(Post item)
+        {
+            _connection.Posts.Add(item);
+        }
+
         public Post Read(int id)
         {
-            throw new NotImplementedException();
+            return _connection.Posts.SingleOrDefault(m => m.Id == id);
+        }
+
+        public void Update(Post item)
+        {
+            var post = _connection.Posts.SingleOrDefault(m => m.Id == item.Id);
+            if (post != null)
+            {
+                post.Title = item.Title;
+                post.Content = item.Content;
+                post.UserId = item.UserId;
+            }
+        }
+
+        public void Delete(int id)
+        {
+            var post = _connection.Posts.SingleOrDefault(m => m.Id == id);
+            if (post != null)
+            {
+                _connection.Posts.Remove(post);
+            }
+        }
+
+        public bool Exists(int id)
+        {
+            return _connection.Posts.Any(m => m.Id == id);
         }
 
         public void SaveChanges()
@@ -52,9 +62,9 @@ namespace DataAccess.Repositories
             _connection.SaveChanges();
         }
 
-        public void Update(Post item)
+        public void Dispose()
         {
-            throw new NotImplementedException();
+            _connection.Dispose();
         }
     }
 }
