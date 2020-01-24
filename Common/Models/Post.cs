@@ -17,5 +17,9 @@ namespace Common.Models
         public string Content { get; set; }
         [Required]
         public string UserId { get; set; }
+        [Required]
+        public string UserName { get; set; }
+        public int UpVotes { get; set; }
+        public int DownVotes { get; set; }
     }
 }

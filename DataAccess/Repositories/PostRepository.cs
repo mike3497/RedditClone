@@ -40,6 +40,9 @@ namespace DataAccess.Repositories
                 post.Title = item.Title;
                 post.Content = item.Content;
                 post.UserId = item.UserId;
+                post.UserName = item.UserName;
+                post.UpVotes = item.UpVotes;
+                post.DownVotes = item.DownVotes;
             }
         }
 

@@ -22,6 +22,7 @@
     </div>
 
     @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.UserName)
 
     <a href="@Url.Action("Index", "Home")" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
     <button type="submit" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Post</button>

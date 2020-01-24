@@ -11,14 +11,16 @@
 
 <div class="row">
     <div class="col-sm-12">
-        @foreach(var item in Model)
-        {
-            <div class="card">
-                <div class="card-body">
-                    @item.Title
-                    @item.Content
-                </div>
-            </div>
-        }
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">
+                    <p><i class="fa fa-arrow-alt-circle-up"></i></p>
+                    <h5>@item.Title</h5>
+                    <p class="small text-muted mb-2">submitted by @item.UserName</p>
+                    <p>0 comments</p>
+                </li>
+            }
+        </ul>
     </div>
 </div>

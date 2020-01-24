@@ -29,7 +29,8 @@ namespace FrontEnd.Controllers
         {
             Post post = new Post
             {
-                UserId = User.Identity.GetUserId()
+                UserId = User.Identity.GetUserId(),
+                UserName = User.Identity.GetUserName()
             };
 
             return View(post);
