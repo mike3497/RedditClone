@@ -20,12 +20,12 @@ namespace FrontEnd.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(PostsViewModel comment)
+        public ActionResult Create(Comment comment)
         {
-            comment.Comment.UserId = User.Identity.GetUserId();
-            comment.Comment.UserName = User.Identity.GetUserName();
+            comment.UserId = User.Identity.GetUserId();
+            comment.UserName = User.Identity.GetUserName();
 
-            _commentManager.Create(comment.Comment);
+            _commentManager.Create(comment);
 
             return RedirectToAction("Index", "Home");
         }
