@@ -19,9 +19,11 @@ namespace FrontEnd
 
             // Repositories
             container.RegisterType<IPostRepository, PostRepository>();
+            container.RegisterType<ICommentRepository, CommentRepository>();
 
             // Managers
             container.RegisterType<PostManager, PostManager>();
+            container.RegisterType<CommentManager, CommentManager>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

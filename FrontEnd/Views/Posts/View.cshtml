@@ -1,0 +1,36 @@
+﻿@model FrontEnd.Models.PostsViewModel
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @Model.Post.Title
+            @Model.Post.Content
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            @using (Html.BeginForm("Create", "Comments"))
+            {
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Comment.Content)
+                    @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
+                </div>
+
+                @Html.HiddenFor(m => m.Post.Id)
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul>
+                @foreach (var item in Model.Comments)
+                {
+                    <li>@item.Content</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
