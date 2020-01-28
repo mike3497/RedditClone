@@ -24,6 +24,8 @@ namespace Managers.Managers
 
         public void Create(Comment comment)
         {
+            comment.TimeStamp = DateTime.Now;
+
             _commentRepository.Create(comment);
             _commentRepository.SaveChanges();
         }

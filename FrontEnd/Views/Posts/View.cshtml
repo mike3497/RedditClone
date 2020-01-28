@@ -1,36 +1,39 @@
 ﻿@model FrontEnd.Models.PostsViewModel
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            @Model.Post.Title
-            @Model.Post.Content
-        </div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3>@Model.Post.Title</h3>
+        <p class="small text-muted mb-2">submitted @Model.Post.TimeStamp by @Model.Post.UserName</p>
+        @Model.Post.Content
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            @using (Html.BeginForm("Create", "Comments"))
-            {
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Comment.Content)
-                    @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
-                </div>
+<div class="row">
+    <div class="col-sm-12">
+        @using (Html.BeginForm("Create", "Comments"))
+        {
+            <div class="form-group">
+                @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
+            </div>
 
-                @Html.Hidden("Comment.PostId", Model.Post.Id)
+            @Html.Hidden("Comment.PostId", Model.Post.Id)
                 
-                <button type="submit" class="btn btn-primary">Save</button>
-            }
-        </div>
+            <button type="submit" class="btn btn-primary">Reply</button>
+        }
     </div>
+</div>
 
-    <div class="row">
-        <div class="col-sm-12">
-            <ul>
-                @foreach (var item in Model.Comments)
-                {
-                    <li>@item.Content</li>
-                }
-            </ul>
-        </div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Comments</h3>
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Model.Comments)
+            {
+                <li class="list-group-item">
+                    <p class="text-success small mb-2">@item.UserName <span class="text-muted">@Model.Comment.TimeStamp</span></p>
+                    <p class="mb-2">@item.Content</p>
+                    <p><a href="#">Reply</a></p>
+                </li>
+            }
+        </ul>
     </div>
 </div>

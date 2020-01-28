@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace FrontEnd.Controllers
 {
+    [Authorize]
     public class CommentsController : Controller
     {
         private readonly CommentManager _commentManager;

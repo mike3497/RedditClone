@@ -9,19 +9,9 @@
             @foreach (var item in Model)
             {
                 <li class="list-group-item">
-                    <div class="d-flex align-items-center">
-                        <div class="col-sm-1">
-                            <i class="fa fa-arrow-circle-down"></i>
-                            <i class="fa fa-arrow-circle-up"></i>
-                            <span>0</span>
-                        </div>
-                        <div class="col-sm-11">
-                            <h5><a href="@Url.Action("View", "Posts", new { @id = item.Id })">@item.Title</a></h5>
-                            <p class="small text-muted mb-2">submitted by @item.UserName</p>
-                            <p><a href="@Url.Action("View", "Posts", new { @id = item.Id })">0 comments</a></p>
-                        </div>
-                    </div>
-                    
+                    <h5><a href="@Url.Action("View", "Posts", new { @id = item.Id })">@item.Title</a></h5>
+                    <p class="small text-muted mb-2">submitted @item.TimeStamp by @item.UserName</p>
+                    <p><a href="@Url.Action("View", "Posts", new { @id = item.Id })">0 comments</a></p>
                 </li>
             }
         </ul>

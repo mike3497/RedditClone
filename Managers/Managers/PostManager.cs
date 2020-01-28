@@ -24,6 +24,8 @@ namespace Managers.Managers
 
         public void Create(Post post)
         {
+            post.TimeStamp = DateTime.Now;
+
             _postRepository.Create(post);
             _postRepository.SaveChanges();
         }

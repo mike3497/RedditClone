@@ -21,5 +21,6 @@ namespace Common.Models
         public string UserName { get; set; }
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
+        public DateTime TimeStamp { get; set; }
     }
 }
