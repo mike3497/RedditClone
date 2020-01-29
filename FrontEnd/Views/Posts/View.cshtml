@@ -31,7 +31,7 @@
                 <li class="list-group-item">
                     <p class="text-success small mb-2">@item.UserName <span class="text-muted">@item.TimeStamp</span></p>
                     <p class="mb-2">@item.Content</p>
-                    <p><a class="btn-reply" href="#" data-comment-id="@item.Id">Reply</a></p>
+                    <p><a class="btn-reply small" href="#" data-comment-id="@item.Id">Reply</a></p>
                 </li>
             }
         </ul>
@@ -46,19 +46,21 @@
             console.log(template);
 
             $('.btn-reply').on('click', function (e) {
+                e.preventDefault();
+
                 var commentId = $(e.target).data('comment-id');
 
                 var parent = $(e.target).closest('.list-group-item');
 
-                parent.append(template);
-
-                console.log(parent);
+                if (!parent.find('.reply-form').length) {
+                    parent.append(template);
+                }
             });
         });
     </script>
 
     <script id="reply-template" type="text/template">
-        <div class="">
+        <div class="reply-form">
             @using (Html.BeginForm("Create", "Comments"))
             {
                 <div class="form-group">
@@ -66,10 +68,11 @@
                 </div>
 
                 @Html.Hidden("Comment.PostId", Model.Post.Id)
-                
-                
 
-                <button type="submit" class="btn btn-primary">Reply</button>
+                <input type="hidden" name="Comment.ParentId" id="comment-parent-id"/>
+
+                <button type="submit" class="btn btn-primary btn-sm">Save</button>
+                <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
             }
         </div>
     </script>
