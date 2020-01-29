@@ -1,5 +1,5 @@
 ﻿@model FrontEnd.Models.PostsViewModel
-<div class="row">
+<div class="row mb-4">
     <div class="col-sm-12">
         <h3>@Model.Post.Title</h3>
         <p class="small text-muted mb-2">submitted @Model.Post.TimeStamp by @Model.Post.UserName</p>
@@ -7,7 +7,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-4">
     <div class="col-sm-12">
         @using (Html.BeginForm("Create", "Comments"))
         {
@@ -29,11 +29,48 @@
             @foreach (var item in Model.Comments)
             {
                 <li class="list-group-item">
-                    <p class="text-success small mb-2">@item.UserName <span class="text-muted">@Model.Comment.TimeStamp</span></p>
+                    <p class="text-success small mb-2">@item.UserName <span class="text-muted">@item.TimeStamp</span></p>
                     <p class="mb-2">@item.Content</p>
-                    <p><a href="#">Reply</a></p>
+                    <p><a class="btn-reply" href="#" data-comment-id="@item.Id">Reply</a></p>
                 </li>
             }
         </ul>
     </div>
 </div>
+
+@section Scripts 
+{
+    <script>
+        $(document).ready(function () {
+            var template = $('#reply-template').html();
+            console.log(template);
+
+            $('.btn-reply').on('click', function (e) {
+                var commentId = $(e.target).data('comment-id');
+
+                var parent = $(e.target).closest('.list-group-item');
+
+                parent.append(template);
+
+                console.log(parent);
+            });
+        });
+    </script>
+
+    <script id="reply-template" type="text/template">
+        <div class="">
+            @using (Html.BeginForm("Create", "Comments"))
+            {
+                <div class="form-group">
+                    @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
+                </div>
+
+                @Html.Hidden("Comment.PostId", Model.Post.Id)
+                
+                
+
+                <button type="submit" class="btn btn-primary">Reply</button>
+            }
+        </div>
+    </script>
+}
