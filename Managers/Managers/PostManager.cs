@@ -97,5 +97,12 @@ namespace Managers.Managers
 
             return list;
         }
+
+        public IEnumerable<Post> Search(string searchTerm)
+        {
+            var search = _postRepository.Search(searchTerm);
+
+            return search;
+        }
     }
 }

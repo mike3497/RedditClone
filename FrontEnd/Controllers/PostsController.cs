@@ -38,6 +38,13 @@ namespace FrontEnd.Controllers
             return View(vm);
         }
 
+        public ActionResult Search(string searchTerm)
+        {
+            var list = _postManager.Search(searchTerm);
+
+            return View(list);
+        }
+
         [Authorize]
         public ActionResult Create()
         {

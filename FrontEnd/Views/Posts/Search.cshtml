@@ -1,0 +1,20 @@
+﻿@model IEnumerable<Common.Models.Post>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+<div class="row">
+    <div class="col-sm-9">
+        <ul class="list-group list-group-flush">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item">
+                    <h5><a href="@Url.Action("View", "Posts", new { @id = item.Id })">@item.Title</a></h5>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

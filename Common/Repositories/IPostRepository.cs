@@ -10,5 +10,6 @@ namespace Common.Repositories
     public interface IPostRepository : ICrudRepository<Post>, IDisposable
     {
         int GetNumberOfCommentsByPostId(int id);
+        IEnumerable<Post> Search(string searchTerm);
     }
 }

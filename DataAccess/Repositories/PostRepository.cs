@@ -27,6 +27,7 @@ namespace DataAccess.Repositories
             return _connection.Comments.Where(m => m.PostId == id).Count();
         }
 
+        #region CRUD
         public void Create(Post item)
         {
             _connection.Posts.Add(item);
@@ -64,6 +65,15 @@ namespace DataAccess.Repositories
         {
             return _connection.Posts.Any(m => m.Id == id);
         }
+        #endregion
+
+        public IEnumerable<Post> Search(string searchTerm)
+        {
+            string[] keywords = searchTerm.Split(' ');
+
+            return _connection.Posts.Where(m => keywords.Any(n => m.Title.Contains(n))).ToList();
+        }
+
 
         public void SaveChanges()
         {

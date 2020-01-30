@@ -19,12 +19,16 @@
     <div class="col-sm-3">
         <div class="card">
             <div class="card-body">
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button"><i class="fa fa-search"></i></button>
+                @using (Html.BeginForm("Search", "Posts"))
+                {
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" name="searchTerm" placeholder="Search...">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                        </div>
                     </div>
-                </div>
+                }
+
                 <p><a class="btn btn-primary btn-block" href="@Url.Action("Create", "Posts")">Create New Post</a></p>
             </div>
         </div>
