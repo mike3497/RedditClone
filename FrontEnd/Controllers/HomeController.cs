@@ -1,4 +1,5 @@
 ﻿using Common.Models;
+using FrontEnd.Models;
 using Managers.Managers;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,12 @@ namespace FrontEnd.Controllers
 
         public ActionResult Index()
         {
-            var posts = _postManager.GetAll();
+            var vm = new HomeViewModel
+            {
+                Posts = _postManager.GetPostsWithDetails()
+            };
 
-            return View(posts);
+            return View(vm);
         }
 
         public ActionResult About()

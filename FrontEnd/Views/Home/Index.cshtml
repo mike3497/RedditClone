@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Common.Models.Post>
+﻿@model FrontEnd.Models.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -6,12 +6,12 @@
 <div class="row">
     <div class="col-sm-12">
         <ul class="list-group list-group-flush">
-            @foreach (var item in Model)
+            @foreach (var item in Model.Posts)
             {
                 <li class="list-group-item">
-                    <h5><a href="@Url.Action("View", "Posts", new { @id = item.Id })">@item.Title</a></h5>
-                    <p class="small text-muted mb-2">submitted @item.TimeStamp by @item.UserName</p>
-                    <p><a href="@Url.Action("View", "Posts", new { @id = item.Id })">0 comments</a></p>
+                    <h5><a href="@Url.Action("View", "Posts", new { @id = item.Post.Id })">@item.Post.Title</a></h5>
+                    <p class="small text-muted mb-2">submitted @item.Post.TimeStamp by @item.Post.UserName</p>
+                    <p><a href="@Url.Action("View", "Posts", new { @id = item.Post.Id })">@item.NumComments comments</a></p>
                 </li>
             }
         </ul>

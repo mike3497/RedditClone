@@ -22,6 +22,11 @@ namespace Managers.Managers
             return _postRepository.GetAll();
         }
 
+        public int GetNumberOfCommentsByPostId(int id)
+        {
+            return _postRepository.GetNumberOfCommentsByPostId(id);
+        }
+
         public void Create(Post post)
         {
             post.TimeStamp = DateTime.Now;
@@ -50,6 +55,26 @@ namespace Managers.Managers
         public bool Exists(int id)
         {
             return _postRepository.Exists(id);
+        }
+
+        public IEnumerable<PostDetails> GetPostsWithDetails()
+        {
+            var posts = GetAll();
+
+            List<PostDetails> list = new List<PostDetails>();
+
+            foreach(var item in posts)
+            {
+                var postDetails = new PostDetails
+                {
+                    Post = item,
+                    NumComments = GetNumberOfCommentsByPostId(item.Id)
+                };
+
+                list.Add(postDetails);
+            }
+
+            return list;
         }
     }
 }

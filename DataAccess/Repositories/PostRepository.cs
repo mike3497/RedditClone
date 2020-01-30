@@ -22,6 +22,11 @@ namespace DataAccess.Repositories
             return _connection.Posts.ToList();
         }
 
+        public int GetNumberOfCommentsByPostId(int id)
+        {
+            return _connection.Comments.Where(m => m.PostId == id).Count();
+        }
+
         public void Create(Post item)
         {
             _connection.Posts.Add(item);
