@@ -9,15 +9,16 @@
 
 </head>
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid p-0">
         @Html.Partial("_Navbar")
     </div>
 
-    <div class="container-fluid ">
+    <div class="container-fluid p-0">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="text-center">
+            <p>&copy; @DateTime.Now.Year - Michael Carillon</p>
+            <p><a href="https://github.com/mike3497/RedditClone"><i class="fa fa-github fa-2x"></i></a></p>
         </footer>
     </div>
 

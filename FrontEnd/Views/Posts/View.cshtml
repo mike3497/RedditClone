@@ -26,13 +26,39 @@
     <div class="col-sm-12">
         <h3>Comments</h3>
         <ul class="list-group list-group-flush">
-            @foreach (var item in Model.Comments)
+            @foreach (var item in Model.Comments.Where(m => m.ParentCommentId == 0))
             {
                 <li class="list-group-item">
                     <p class="text-success small mb-2">@item.UserName <span class="text-muted">@item.TimeStamp</span></p>
                     <p class="mb-2">@item.Content</p>
                     <p><a class="btn-reply small" href="#" data-comment-id="@item.Id">Reply</a></p>
+
+                    <div class="reply-form" style="display: none;">
+                        @using (Html.BeginForm("Create", "Comments"))
+                        {
+                            <div class="form-group">
+                                @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control", @id = "" })
+                            </div>
+
+                            @Html.Hidden("Comment.PostId", Model.Post.Id, new { @id = "" })
+                            @Html.Hidden("Comment.ParentCommentId", item.Id, new { @id = "" })
+
+                            <button type="submit" class="btn btn-primary btn-sm btn-save">Save</button>
+                            <button class="btn btn-danger btn-sm btn-cancel">Cancel</button>
+                        }
+                    </div>
+
                 </li>
+
+                // Replys
+                foreach(var item2 in Model.Comments.Where(m => m.ParentCommentId == item.Id))
+                {
+                    <li class="list-group-item ml-4">
+                        <p class="text-success small mb-2">@item.UserName <span class="text-muted">@item.TimeStamp</span></p>
+                        <p class="mb-2">RE: @item.Content</p>
+                        <p><a class="btn-reply small" href="#" data-comment-id="@item.Id">Reply</a></p>
+                    </li>
+                }
             }
         </ul>
     </div>
@@ -42,38 +68,23 @@
 {
     <script>
         $(document).ready(function () {
-            var template = $('#reply-template').html();
-            console.log(template);
-
             $('.btn-reply').on('click', function (e) {
                 e.preventDefault();
 
-                var commentId = $(e.target).data('comment-id');
+                var parent = $(e.target).closest('.list-group-item');
+                var form = parent.find('.reply-form');
+
+                form.toggle('drop', 750);
+            });
+
+            $('.btn-cancel').on('click', function (e) {
+                e.preventDefault();
 
                 var parent = $(e.target).closest('.list-group-item');
+                var form = parent.find('.reply-form');
 
-                if (!parent.find('.reply-form').length) {
-                    parent.append(template);
-                }
+                form.toggle('drop', 750);
             });
         });
-    </script>
-
-    <script id="reply-template" type="text/template">
-        <div class="reply-form">
-            @using (Html.BeginForm("Create", "Comments"))
-            {
-                <div class="form-group">
-                    @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
-                </div>
-
-                @Html.Hidden("Comment.PostId", Model.Post.Id)
-
-                <input type="hidden" name="Comment.ParentId" id="comment-parent-id"/>
-
-                <button type="submit" class="btn btn-primary btn-sm">Save</button>
-                <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
-            }
-        </div>
     </script>
 }
