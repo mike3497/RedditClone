@@ -10,5 +10,6 @@ namespace Common.Models
     {
         public Post Post { get; set; }
         public int NumComments { get; set; }
+        public string TimeSinceCreated { get; set; }
     }
 }

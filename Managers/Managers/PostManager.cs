@@ -1,4 +1,5 @@
-﻿using Common.Models;
+﻿using Common;
+using Common.Models;
 using Common.Repositories;
 using System;
 using System.Collections.Generic;
@@ -65,10 +66,30 @@ namespace Managers.Managers
 
             foreach(var item in posts)
             {
+                TimeSpan time = (DateTime.Now - item.TimeStamp);
+                string postTime;
+
+                if (time.Days < 1)
+                {
+                    if (time.Hours < 1)
+                    {
+                        postTime = String.Format("{0:0} {1} ago", time.TotalMinutes, "minute".Pluralize((int)time.TotalMinutes));
+                    }
+                    else
+                    {
+                        postTime = String.Format("{0:0} {1} ago", time.TotalHours, "hour".Pluralize((int)time.TotalHours));
+                    }
+                }
+                else
+                {
+                    postTime = String.Format("{0:0} {1} ago", time.TotalDays, "day".Pluralize((int)time.TotalDays));
+                }
+
                 var postDetails = new PostDetails
                 {
                     Post = item,
-                    NumComments = GetNumberOfCommentsByPostId(item.Id)
+                    NumComments = GetNumberOfCommentsByPostId(item.Id),
+                    TimeSinceCreated = postTime
                 };
 
                 list.Add(postDetails);

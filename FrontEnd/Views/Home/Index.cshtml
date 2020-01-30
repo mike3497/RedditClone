@@ -10,7 +10,7 @@
             {
                 <li class="list-group-item">
                     <h5><a href="@Url.Action("View", "Posts", new { @id = item.Post.Id })">@item.Post.Title</a></h5>
-                    <p class="small text-muted mb-2">submitted @item.Post.TimeStamp by @item.Post.UserName</p>
+                    <p class="small text-muted mb-2">submitted @item.TimeSinceCreated by @item.Post.UserName</p>
                     <p><a href="@Url.Action("View", "Posts", new { @id = item.Post.Id })">@item.NumComments comments</a></p>
                 </li>
             }
