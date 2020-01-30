@@ -28,6 +28,7 @@ namespace Managers.Managers
             return _postRepository.GetNumberOfCommentsByPostId(id);
         }
 
+        #region CRUD
         public void Create(Post post)
         {
             post.TimeStamp = DateTime.Now;
@@ -57,6 +58,7 @@ namespace Managers.Managers
         {
             return _postRepository.Exists(id);
         }
+        #endregion
 
         public IEnumerable<PostDetails> GetPostsWithDetails()
         {
@@ -66,31 +68,7 @@ namespace Managers.Managers
 
             foreach(var item in posts)
             {
-                TimeSpan time = (DateTime.Now - item.TimeStamp);
-                string postTime;
-
-                if (time.Days < 1)
-                {
-                    if (time.Hours < 1)
-                    {
-                        postTime = String.Format("{0:0} {1} ago", time.TotalMinutes, "minute".Pluralize((int)time.TotalMinutes));
-                    }
-                    else
-                    {
-                        postTime = String.Format("{0:0} {1} ago", time.TotalHours, "hour".Pluralize((int)time.TotalHours));
-                    }
-                }
-                else
-                {
-                    postTime = String.Format("{0:0} {1} ago", time.TotalDays, "day".Pluralize((int)time.TotalDays));
-                }
-
-                var postDetails = new PostDetails
-                {
-                    Post = item,
-                    NumComments = GetNumberOfCommentsByPostId(item.Id),
-                    TimeSinceCreated = postTime
-                };
+                var postDetails = PostToPostDetails(item);
 
                 list.Add(postDetails);
             }
@@ -98,11 +76,52 @@ namespace Managers.Managers
             return list;
         }
 
-        public IEnumerable<Post> Search(string searchTerm)
+        public IEnumerable<PostDetails> Search(string searchTerm)
         {
             var search = _postRepository.Search(searchTerm);
 
-            return search;
+            List<PostDetails> list = new List<PostDetails>();
+
+            foreach(var item in search)
+            {
+                var postDetails = PostToPostDetails(item);
+
+                list.Add(postDetails);
+            }
+
+            return list;
+        }
+
+        private PostDetails PostToPostDetails(Post post)
+        {
+            TimeSpan time = (DateTime.Now - post.TimeStamp);
+            string postTime;
+
+            if (time.Days < 1)
+            {
+                if (time.Hours < 1)
+                {
+                    postTime = String.Format("{0:0} {1} ago", time.TotalMinutes, "minute".Pluralize((int)time.TotalMinutes));
+                }
+                else
+                {
+                    postTime = String.Format("{0:0} {1} ago", time.TotalHours, "hour".Pluralize((int)time.TotalHours));
+                }
+            }
+            else
+            {
+                postTime = String.Format("{0:0} {1} ago", time.TotalDays, "day".Pluralize((int)time.TotalDays));
+            }
+
+            var postDetails = new PostDetails
+            {
+                Post = post,
+                NumComments = GetNumberOfCommentsByPostId(post.Id),
+                TimeSinceCreated = postTime
+            };
+
+
+            return postDetails;
         }
     }
 }

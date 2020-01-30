@@ -74,7 +74,6 @@ namespace DataAccess.Repositories
             return _connection.Posts.Where(m => keywords.Any(n => m.Title.Contains(n))).ToList();
         }
 
-
         public void SaveChanges()
         {
             _connection.SaveChanges();

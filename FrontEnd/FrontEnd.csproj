@@ -415,6 +415,7 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Posts\View.cshtml" />
     <Content Include="Views\Posts\Search.cshtml" />
+    <Content Include="Views\Posts\_PostBox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

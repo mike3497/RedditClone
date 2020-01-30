@@ -1,0 +1,7 @@
+﻿@model Common.Models.PostDetails
+
+<li class="list-group-item">
+    <h5><a href="@Url.Action("View", "Posts", new { @id = Model.Post.Id })">@Model.Post.Title</a></h5>
+    <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by @Model.Post.UserName</p>
+    <p class="mb-2"><a href="@Url.Action("View", "Posts", new { @id = Model.Post.Id })">@Model.NumComments comments</a></p>
+</li>
