@@ -1,4 +1,6 @@
-﻿<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+﻿@using Microsoft.AspNet.Identity
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -12,6 +14,31 @@
             <li class="nav-item">
                 <a class="nav-link" href="@Url.Action("Create", "Posts")">Create Post</a>
             </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            @if (User.Identity.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { @id = "logout-form", @class = "form-inline" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:document.getElementById('logout-form').submit()">Log off</a>
+                    </li>
+                }
+            }
+            else
+            {
+                <li>
+                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                </li>
+                <li>
+                    @Html.ActionLink("Log in", "Login", "Account", null, new { @class = "nav-link" })
+                </li>
+            }
         </ul>
     </div>
 </nav>
