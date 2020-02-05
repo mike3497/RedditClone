@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Managers\CommentManager.cs" />
-    <Compile Include="Managers\PostManager.cs" />
+    <Compile Include="Managers\SubmissionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

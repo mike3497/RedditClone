@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class PostDetails
+    public class SubmissionDetails
     {
-        public Post Post { get; set; }
+        public Submission Submission { get; set; }
         public int NumComments { get; set; }
         public string TimeSinceCreated { get; set; }
     }

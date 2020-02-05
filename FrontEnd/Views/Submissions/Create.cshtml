@@ -1,11 +1,11 @@
-﻿@model Common.Models.Post
+﻿@model Common.Models.Submission
 
 @{
-    ViewBag.Title = "Create Post";
+    ViewBag.Title = "Create Submission";
 }
 
-<h2>Create Post</h2>
-@using (Html.BeginForm("Create", "Posts"))
+<h2>Create Submission</h2>
+@using (Html.BeginForm("Create", "Submissions"))
 {
     @Html.AntiForgeryToken()
 
@@ -25,5 +25,5 @@
     @Html.HiddenFor(m => m.UserName)
 
     <a href="@Url.Action("Index", "Home")" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-    <button type="submit" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Post</button>
+    <button type="submit" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Submission</button>
 }

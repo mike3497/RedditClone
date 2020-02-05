@@ -19,7 +19,7 @@ namespace Managers.Managers
 
         public IEnumerable<Comment> GetAllByPostId(int id)
         {
-            return _commentRepository.GetAllByPostId(id);
+            return _commentRepository.GetAllBySubmissionId(id);
         }
 
         public void Create(Comment comment)

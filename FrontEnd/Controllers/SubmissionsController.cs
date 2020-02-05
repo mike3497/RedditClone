@@ -10,27 +10,27 @@ using System.Web.Mvc;
 
 namespace FrontEnd.Controllers
 {
-    public class PostsController : Controller
+    public class SubmissionsController : Controller
     {
-        private readonly PostManager _postManager;
+        private readonly SubmissionManager _submissionManager;
         private readonly CommentManager _commentManager;
 
-        public PostsController(PostManager postManager, CommentManager commentManager)
+        public SubmissionsController(SubmissionManager submissionManager, CommentManager commentManager)
         {
-            _postManager = postManager;
+            _submissionManager = submissionManager;
             _commentManager = commentManager;
         }
 
         public ActionResult View(int id)
         {
-            if (!_postManager.Exists(id))
+            if (!_submissionManager.Exists(id))
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var vm = new PostsViewModel
+            var vm = new SubmissionsViewModel
             {
-                Post = _postManager.Read(id),
+                Submission = _submissionManager.Read(id),
                 Comment = new Comment(),
                 Comments = _commentManager.GetAllByPostId(id)
             };
@@ -40,7 +40,7 @@ namespace FrontEnd.Controllers
 
         public ActionResult Search(string searchTerm)
         {
-            var list = _postManager.Search(searchTerm);
+            var list = _submissionManager.Search(searchTerm);
 
             return View(list);
         }
@@ -48,26 +48,26 @@ namespace FrontEnd.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            Post post = new Post
+            Submission submission = new Submission
             {
                 UserId = User.Identity.GetUserId(),
                 UserName = User.Identity.GetUserName()
             };
 
-            return View(post);
+            return View(submission);
         }
 
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Post post)
+        public ActionResult Create(Submission submission)
         {
             if (!ModelState.IsValid)
             {
-                return View(post);    
+                return View(submission);    
             }
 
-            int id = _postManager.Create(post);
+            int id = _submissionManager.Create(submission);
 
             return RedirectToAction("View", new { @id = id });
         }

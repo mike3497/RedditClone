@@ -18,11 +18,11 @@ namespace FrontEnd
             container.RegisterType<AccountController>(new InjectionConstructor());
 
             // Repositories
-            container.RegisterType<IPostRepository, PostRepository>();
+            container.RegisterType<ISubmissionRepository, SubmissionRepository>();
             container.RegisterType<ICommentRepository, CommentRepository>();
 
             // Managers
-            container.RegisterType<PostManager, PostManager>();
+            container.RegisterType<SubmissionManager, SubmissionManager>();
             container.RegisterType<CommentManager, CommentManager>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

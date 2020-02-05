@@ -11,18 +11,18 @@ namespace FrontEnd.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly PostManager _postManager;
+        private readonly SubmissionManager _submissionManager;
 
-        public HomeController(PostManager postManager)
+        public HomeController(SubmissionManager submissionManager)
         {
-            _postManager = postManager;
+            _submissionManager = submissionManager;
         }
 
         public ActionResult Index()
         {
             var vm = new HomeViewModel
             {
-                Posts = _postManager.GetPostsWithDetails()
+                Submissions = _submissionManager.GetSubmissionsWithDetails()
             };
 
             return View(vm);

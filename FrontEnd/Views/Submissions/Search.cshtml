@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Common.Models.PostDetails>
+﻿@model IEnumerable<Common.Models.SubmissionDetails>
 
 @{
     ViewBag.Title = "Search";
@@ -10,7 +10,7 @@
         <ul class="list-group">
             @foreach (var item in Model)
             {
-                @Html.Partial("~/Views/Posts/_PostBox.cshtml", item)
+                @Html.Partial("~/Views/Submissions/_SubmissionBox.cshtml", item)
             }
         </ul>
     </div>

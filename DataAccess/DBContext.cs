@@ -10,7 +10,7 @@ namespace DataAccess
 {
     public class DBContext : ApplicationDbContext
     {
-        public DbSet<Post> Posts { get; set; }
+        public DbSet<Submission> Submissions { get; set; }
         public DbSet<Comment> Comments { get; set; }
     }
 }

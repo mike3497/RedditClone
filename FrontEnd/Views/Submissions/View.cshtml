@@ -1,11 +1,11 @@
-﻿@model FrontEnd.Models.PostsViewModel
+﻿@model FrontEnd.Models.SubmissionsViewModel
 <div class="row mb-4 mt-3">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@Model.Post.Title</h5>
-                <p class="small text-muted mb-2">submitted @Model.Post.TimeStamp by @Model.Post.UserName</p>
-                @Model.Post.Content
+                <h5 class="card-title">@Model.Submission.Title</h5>
+                <p class="small text-muted mb-2">submitted @Model.Submission.TimeStamp by @Model.Submission.UserName</p>
+                @Model.Submission.Content
             </div>
             <div class="card-footer">
                 @using (Html.BeginForm("Create", "Comments"))
@@ -14,7 +14,7 @@
                         @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control" })
                     </div>
 
-                    @Html.Hidden("Comment.PostId", Model.Post.Id)
+                    @Html.Hidden("Comment.SumbissionId", Model.Submission.Id)
 
                     <button type="submit" class="btn btn-primary">Reply</button>
                 }
@@ -42,7 +42,7 @@
                                 @Html.TextAreaFor(m => m.Comment.Content, new { @class = "form-control", @id = "" })
                             </div>
 
-                            @Html.Hidden("Comment.PostId", Model.Post.Id, new { @id = "" })
+                            @Html.Hidden("Comment.SubmissionId", Model.Submission.Id, new { @id = "" })
                             @Html.Hidden("Comment.ParentCommentId", item.Id, new { @id = "" })
 
                             <button type="submit" class="btn btn-primary btn-sm btn-save">Save</button>

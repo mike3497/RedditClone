@@ -22,9 +22,9 @@ namespace DataAccess.Repositories
             return _connection.Comments.ToList();
         }
 
-        public IEnumerable<Comment> GetAllByPostId(int id)
+        public IEnumerable<Comment> GetAllBySubmissionId(int id)
         {
-            return _connection.Comments.Where(m => m.PostId == id).ToList();
+            return _connection.Comments.Where(m => m.SubmissionId == id).ToList();
         }
 
         public void Create(Comment item)
@@ -43,7 +43,7 @@ namespace DataAccess.Repositories
             if (comment != null)
             {
                 comment.Content = item.Content;
-                comment.PostId = item.PostId;
+                comment.SubmissionId = item.SubmissionId;
                 comment.UserId = item.UserId;
                 comment.UserName = item.UserName;
                 comment.UpVotes = item.UpVotes;

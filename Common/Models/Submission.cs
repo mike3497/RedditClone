@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Common.Models
 {
-    public class Post
+    public class Submission
     {
         [Required]
         public int Id { get; set; }

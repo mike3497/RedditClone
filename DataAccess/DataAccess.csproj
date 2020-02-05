@@ -79,10 +79,14 @@
     <Compile Include="Migrations\202001280218563_ModifyCommentAndPost.designer.cs">
       <DependentUpon>202001280218563_ModifyCommentAndPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002051358519_UpdateDatabase.cs" />
+    <Compile Include="Migrations\202002051358519_UpdateDatabase.designer.cs">
+      <DependentUpon>202002051358519_UpdateDatabase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
-    <Compile Include="Repositories\PostRepository.cs" />
+    <Compile Include="Repositories\SubmissionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -109,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001280218563_ModifyCommentAndPost.resx">
       <DependentUpon>202001280218563_ModifyCommentAndPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002051358519_UpdateDatabase.resx">
+      <DependentUpon>202002051358519_UpdateDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

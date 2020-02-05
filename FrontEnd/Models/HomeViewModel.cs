@@ -8,6 +8,6 @@ namespace FrontEnd.Models
 {
     public class HomeViewModel
     {
-        public IEnumerable<PostDetails> Posts { get; set; }
+        public IEnumerable<SubmissionDetails> Submissions { get; set; }
     }
 }

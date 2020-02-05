@@ -6,9 +6,9 @@ using System.Web;
 
 namespace FrontEnd.Models
 {
-    public class PostsViewModel
+    public class SubmissionsViewModel
     {
-        public Post Post { get; set; }
+        public Submission Submission { get; set; }
         public Comment Comment { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
     }
