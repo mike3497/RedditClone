@@ -29,12 +29,14 @@ namespace Managers.Managers
         }
 
         #region CRUD
-        public void Create(Post post)
+        public int Create(Post post)
         {
             post.TimeStamp = DateTime.Now;
 
             _postRepository.Create(post);
             _postRepository.SaveChanges();
+
+            return post.Id;
         }
 
         public Post Read(int id)

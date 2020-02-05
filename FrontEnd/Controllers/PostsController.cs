@@ -67,9 +67,9 @@ namespace FrontEnd.Controllers
                 return View(post);    
             }
 
-            _postManager.Create(post);
+            int id = _postManager.Create(post);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("View", new { @id = id });
         }
     }
 }
