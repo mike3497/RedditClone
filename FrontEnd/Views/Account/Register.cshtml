@@ -3,10 +3,10 @@
     ViewBag.Title = "Register";
 }
 
-<div class="row">
-    <div class="col-sm-6 offset-sm-3">
+<div class="row mt-4">
+    <div class="col-md-6 offset-md-3">
         <h5>Register</h5>
-        <div class="card mt-4">
+        <div class="card">
             <div class="card-header">
                 Create a new account
             </div>
@@ -15,20 +15,22 @@
                 {
                     @Html.AntiForgeryToken()
 
-                    @Html.ValidationSummary("", new { @class = "text-danger" })
                     <div class="form-group">
                         @Html.LabelFor(m => m.Email)
                         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group">
                         @Html.LabelFor(m => m.ConfirmPassword)
                         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mb-0">
                         <input type="submit" class="btn btn-primary" value="Register" />
                     </div>
                 }
