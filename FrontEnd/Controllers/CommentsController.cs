@@ -28,7 +28,7 @@ namespace FrontEnd.Controllers
 
             _commentManager.Create(comment);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("View", "Posts", new { @id = comment.PostId });
         }
     }
 }
