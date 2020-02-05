@@ -62,6 +62,17 @@ namespace FrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Submission submission)
         {
+            if (submission.Type == SubmissionType.Link)
+            {
+                if (submission.Content != "")
+                {
+                    if (!Uri.IsWellFormedUriString(submission.Content, UriKind.Absolute))
+                    {
+                        ModelState.AddModelError("Content", "Please enter a valid URL.");
+                    }
+                }
+            }
+
             if (!ModelState.IsValid)
             {
                 return View(submission);    

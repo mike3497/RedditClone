@@ -83,6 +83,14 @@
     <Compile Include="Migrations\202002051358519_UpdateDatabase.designer.cs">
       <DependentUpon>202002051358519_UpdateDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002051619288_AddTypeToSubmission.cs" />
+    <Compile Include="Migrations\202002051619288_AddTypeToSubmission.designer.cs">
+      <DependentUpon>202002051619288_AddTypeToSubmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002051633392_RemoveRequiredOnSubmissionForNow.cs" />
+    <Compile Include="Migrations\202002051633392_RemoveRequiredOnSubmissionForNow.designer.cs">
+      <DependentUpon>202002051633392_RemoveRequiredOnSubmissionForNow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -116,6 +124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002051358519_UpdateDatabase.resx">
       <DependentUpon>202002051358519_UpdateDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002051619288_AddTypeToSubmission.resx">
+      <DependentUpon>202002051619288_AddTypeToSubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002051633392_RemoveRequiredOnSubmissionForNow.resx">
+      <DependentUpon>202002051633392_RemoveRequiredOnSubmissionForNow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

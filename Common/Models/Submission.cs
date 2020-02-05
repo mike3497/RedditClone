@@ -9,18 +9,20 @@ namespace Common.Models
 {
     public class Submission
     {
-        [Required]
         public int Id { get; set; }
-        [Required]
+        public SubmissionType Type { get; set; }
         public string Title { get; set; }
-        [Required]
         public string Content { get; set; }
-        [Required]
         public string UserId { get; set; }
-        [Required]
         public string UserName { get; set; }
         public int UpVotes { get; set; }
         public int DownVotes { get; set; }
         public DateTime TimeStamp { get; set; }
+    }
+
+    public enum SubmissionType
+    {
+        Text,
+        Link
     }
 }

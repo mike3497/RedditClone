@@ -4,26 +4,75 @@
     ViewBag.Title = "Create Submission";
 }
 
-<h2>Create Submission</h2>
-@using (Html.BeginForm("Create", "Submissions"))
+<div class="row mt-2">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <div class="card-header">
+                Create a new submission
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("Create", "Submissions"))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Title)
+                        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "small text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.Type)
+                    <div class="form-check-inline">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Type" id="type-radio-1" value="Text" checked>
+                            <label class="form-check-label" for="type-radio-1">
+                                Text
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Type" id="type-radio-2" value="Link">
+                            <label class="form-check-label" for="type-radio-2">
+                                Link
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="content-text">
+                        @Html.LabelFor(m => m.Content)
+                        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @cols = 80, @rows = 10 })
+                        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "small text-danger" })
+                    </div>
+
+                    <div class="form-group d-none" id="content-link">
+                        @Html.LabelFor(m => m.Content, "URL")
+                        @Html.TextBoxFor(m => m.Content, new { @class = "form-control", @disabled = "true" })
+                        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "small text-danger" })
+                    </div>
+
+                    @Html.HiddenFor(m => m.UserId)
+                    @Html.HiddenFor(m => m.UserName)
+
+                    <a href="@Url.Action("Index", "Home")" class="btn btn-danger btn-sm"><i class="fa fa-arrow-left"></i> Back</a>
+                    <button type="submit" class="btn btn-primary btn-sm float-right"><i class="fa fa-plus"></i> Create Submission</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
 {
-    @Html.AntiForgeryToken()
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Title)
-        @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Title, null, new { @class = "small text-danger"})
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.Content)
-        @Html.TextAreaFor(m => m.Content, new { @class = "form-control", @cols= 80, @rows = 10})
-        @Html.ValidationMessageFor(m => m.Content, null, new { @class = "small text-danger" })
-    </div>
-
-    @Html.HiddenFor(m => m.UserId)
-    @Html.HiddenFor(m => m.UserName)
-
-    <a href="@Url.Action("Index", "Home")" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Back</a>
-    <button type="submit" class="btn btn-primary float-right"><i class="fa fa-plus"></i> Create Submission</button>
+    <script>
+        $(document).ready(function () {
+            $('input[type=radio][name=Type]').on('change', function () {
+                $('#content-text').toggleClass('d-none');
+                $('#content-text').prop('disabled', function (i, v) { return !v });
+                $('#content-link').toggleClass('d-none');
+                $('#content-link').prop('disabled', function (i, v) { return !v });
+            });
+        });
+    </script>
+        
 }
+
+    
