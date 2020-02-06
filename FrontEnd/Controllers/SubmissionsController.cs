@@ -46,39 +46,54 @@ namespace FrontEnd.Controllers
         }
 
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(SubmissionType type)
         {
-            Submission submission = new Submission
+            var vm = new CreateSubmissionViewModel
             {
-                UserId = User.Identity.GetUserId(),
-                UserName = User.Identity.GetUserName()
+                Submission = new Submission
+                {
+                    UserId = User.Identity.GetUserId(),
+                    UserName = User.Identity.GetUserName()
+                },
+                Type = type
             };
 
-            return View(submission);
+            return View(vm);
         }
 
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Submission submission)
+        public ActionResult Create(CreateSubmissionViewModel vm)
         {
-            if (submission.Type == SubmissionType.Link)
+            if (vm.Type == SubmissionType.Link)
             {
-                if (submission.Content != "")
+                if (String.IsNullOrWhiteSpace(vm.Submission.URL))
                 {
-                    if (!Uri.IsWellFormedUriString(submission.Content, UriKind.Absolute))
+                    ModelState.AddModelError("Submission.URL", "Please enter a URL.");
+                }
+                else
+                {
+                    if (!Uri.IsWellFormedUriString(vm.Submission.URL, UriKind.Absolute))
                     {
-                        ModelState.AddModelError("Content", "Please enter a valid URL.");
+                        ModelState.AddModelError("Submission.URL", "Please enter a valid URL.");
                     }
+                }
+            }
+            else
+            {
+                if (String.IsNullOrEmpty(vm.Submission.Content))
+                {
+                    ModelState.AddModelError("Submission.Content", "Please enter some content.");
                 }
             }
 
             if (!ModelState.IsValid)
             {
-                return View(submission);    
+                return View(vm);    
             }
 
-            int id = _submissionManager.Create(submission);
+            int id = _submissionManager.Create(vm.Submission);
 
             return RedirectToAction("View", new { @id = id });
         }

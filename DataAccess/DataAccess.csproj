@@ -91,6 +91,14 @@
     <Compile Include="Migrations\202002051633392_RemoveRequiredOnSubmissionForNow.designer.cs">
       <DependentUpon>202002051633392_RemoveRequiredOnSubmissionForNow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002060033232_AddURLToSubmission.cs" />
+    <Compile Include="Migrations\202002060033232_AddURLToSubmission.designer.cs">
+      <DependentUpon>202002060033232_AddURLToSubmission.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002060237151_ModifySubmission.cs" />
+    <Compile Include="Migrations\202002060237151_ModifySubmission.designer.cs">
+      <DependentUpon>202002060237151_ModifySubmission.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
@@ -130,6 +138,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002051633392_RemoveRequiredOnSubmissionForNow.resx">
       <DependentUpon>202002051633392_RemoveRequiredOnSubmissionForNow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002060033232_AddURLToSubmission.resx">
+      <DependentUpon>202002060033232_AddURLToSubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002060237151_ModifySubmission.resx">
+      <DependentUpon>202002060237151_ModifySubmission.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

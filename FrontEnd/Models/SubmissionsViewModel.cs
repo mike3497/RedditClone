@@ -12,4 +12,10 @@ namespace FrontEnd.Models
         public Comment Comment { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
     }
+
+    public class CreateSubmissionViewModel
+    {
+        public Submission Submission { get; set; }
+        public SubmissionType Type { get; set; }
+    }
 }
