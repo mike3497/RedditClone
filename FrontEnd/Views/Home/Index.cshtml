@@ -25,7 +25,8 @@
                     </div>
                 }
 
-                <p><a class="btn btn-primary btn-block" href="@Url.Action("Create", "Submissions")">Create New Submission</a></p>
+                <p><a class="btn btn-primary btn-block" href="@Url.Action("Create", "Submissions", new { @type = Common.Models.SubmissionType.Text })">Create New Text Submission</a></p>
+                <p><a class="btn btn-primary btn-block" href="@Url.Action("Create", "Submissions", new { @type = Common.Models.SubmissionType.Link })">Create New Link Submission</a></p>
             </div>
         </div>
     </div>

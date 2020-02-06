@@ -1,7 +1,17 @@
 ﻿@model Common.Models.SubmissionDetails
 
 <li class="list-group-item">
-    <h5><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.Submission.Title</a></h5>
+    <h5>
+        @if (Model.Submission.Type == Common.Models.SubmissionType.Text)
+        {
+            <a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.Submission.Title</a>
+        }
+        else
+        {
+            <a href="@Model.Submission.URL">@Model.Submission.Title</a>
+        }
+
+    </h5>
     <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by @Model.Submission.UserName</p>
     <p class="mb-2"><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.NumComments comments</a></p>
 </li>

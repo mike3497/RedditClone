@@ -46,7 +46,7 @@ namespace FrontEnd.Controllers
         }
 
         [Authorize]
-        public ActionResult Create(SubmissionType type)
+        public ActionResult Create(SubmissionType type = SubmissionType.Text)
         {
             var vm = new CreateSubmissionViewModel
             {
@@ -66,6 +66,8 @@ namespace FrontEnd.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateSubmissionViewModel vm)
         {
+            vm.Submission.Type = vm.Type;
+
             if (vm.Type == SubmissionType.Link)
             {
                 if (String.IsNullOrWhiteSpace(vm.Submission.URL))
