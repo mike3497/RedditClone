@@ -10,5 +10,6 @@ namespace Common.Repositories
     public interface ICommentRepository : ICrudRepository<Comment>, IDisposable
     {
         IEnumerable<Comment> GetAllBySubmissionId(int id);
+        IEnumerable<Comment> GetAllTopLevelBySubmissionId(int id);
     }
 }

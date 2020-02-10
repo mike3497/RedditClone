@@ -9,7 +9,7 @@ namespace FrontEnd.Models
     public class SubmissionsViewModel
     {
         public Submission Submission { get; set; }
-        public Comment Comment { get; set; }
+        public Comment NewComment { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
     }
 

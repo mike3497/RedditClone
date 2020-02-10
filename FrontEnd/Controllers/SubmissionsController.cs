@@ -31,8 +31,8 @@ namespace FrontEnd.Controllers
             var vm = new SubmissionsViewModel
             {
                 Submission = _submissionManager.Read(id),
-                Comment = new Comment(),
-                Comments = _commentManager.GetAllByPostId(id)
+                NewComment = new Comment(),
+                Comments = _commentManager.GetAllBySubmissionId(id)
             };
 
             return View(vm);

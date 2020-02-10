@@ -21,14 +21,16 @@ namespace FrontEnd.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Comment comment)
+        public ActionResult Create(SubmissionsViewModel vm)
         {
-            comment.UserId = User.Identity.GetUserId();
-            comment.UserName = User.Identity.GetUserName();
+            vm.NewComment.UserId = User.Identity.GetUserId();
+            vm.NewComment.UserName = User.Identity.GetUserName();
 
-            _commentManager.Create(comment);
+            vm.NewComment.SubmissionId = vm.Submission.Id;
 
-            return RedirectToAction("View", "Posts", new { @id = comment.SubmissionId });
+            _commentManager.Create(vm.NewComment);
+
+            return RedirectToAction("View", "Submissions", new { @id = vm.Submission.Id });
         }
     }
 }

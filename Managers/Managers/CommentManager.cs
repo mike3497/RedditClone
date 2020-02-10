@@ -17,9 +17,14 @@ namespace Managers.Managers
             _commentRepository = commentRepository;
         }
 
-        public IEnumerable<Comment> GetAllByPostId(int id)
+        public IEnumerable<Comment> GetAllBySubmissionId(int id)
         {
             return _commentRepository.GetAllBySubmissionId(id);
+        }
+
+        public IEnumerable<Comment> GetAllTopLevelBySubmissionId(int id)
+        {
+            return _commentRepository.GetAllTopLevelBySubmissionId(id);
         }
 
         public void Create(Comment comment)

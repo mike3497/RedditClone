@@ -27,6 +27,13 @@ namespace DataAccess.Repositories
             return _connection.Comments.Where(m => m.SubmissionId == id).ToList();
         }
 
+        public IEnumerable<Comment> GetAllTopLevelBySubmissionId(int id)
+        {
+            return _connection.Comments.Where(m => m.SubmissionId == id)
+                .Where(m => m.ParentCommentId == null)
+                .ToList();
+        }
+
         public void Create(Comment item)
         {
             _connection.Comments.Add(item);
