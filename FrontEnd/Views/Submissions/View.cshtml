@@ -36,21 +36,21 @@
                     if (parent.ParentCommentId == 0)
                     {
                         <li class="list-group-item">
-                            @parent.Id -
-                            @parent.Content
+                            <p class="text-success small mb-2">@parent.UserName <span class="text-muted">@parent.TimeStamp</span></p>
+                            <p class="mb-2">@parent.Content</p>
+                            <p><a class="btn-reply small" href="#" data-comment-id="@parent.Id">Reply</a></p>
 
                             <ul class="list-group">
                                 @foreach (var child in Model.Comments)
                                 {
                                     if (child.ParentCommentId == parent.Id)
                                     {
-                                        <li class="list-group-item bg-light">
-                                            @child.Id -
-                                            @child.Content
+                                        <li class="list-group-item">
+                                            <p class="text-success small mb-2">@parent.UserName <span class="text-muted">@parent.TimeStamp</span></p>
+                                            <p class="mb-2">@parent.Content</p>
+                                            <p><a class="btn-reply small" href="#" data-comment-id="@parent.Id">Reply</a></p>
                                         </li>
                                     }
-
-
                                 }
                             </ul>
                         </li>
