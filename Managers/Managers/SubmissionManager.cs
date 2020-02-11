@@ -78,6 +78,25 @@ namespace Managers.Managers
             return list;
         }
 
+        public void UpVote(int id)
+        {
+            _submissionRepository.UpVote(id);
+            _submissionRepository.SaveChanges();
+        }
+
+        public void DownVote(int id)
+        {
+            _submissionRepository.DownVote(id);
+            _submissionRepository.SaveChanges();
+        }
+
+        public int GetScore(int id)
+        {
+            var submission = _submissionRepository.Read(id);
+
+            return (submission.UpVotes - submission.DownVotes);
+        }
+
         public IEnumerable<SubmissionDetails> Search(string searchTerm)
         {
             var search = _submissionRepository.Search(searchTerm);
@@ -119,9 +138,9 @@ namespace Managers.Managers
             {
                 Submission = submission,
                 NumComments = GetNumberOfCommentsBySubmissionId(submission.Id),
+                Score = GetScore(submission.Id),
                 TimeSinceCreated = submissionTime
             };
-
 
             return submissionDetails;
         }

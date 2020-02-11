@@ -67,6 +67,26 @@ namespace DataAccess.Repositories
         }
         #endregion
 
+        public void UpVote(int id)
+        {
+            var submission = _connection.Submissions.Where(m => m.Id == id).SingleOrDefault();
+
+            if (submission != null)
+            {
+                submission.UpVotes += 1;
+            }
+        }
+
+        public void DownVote(int id)
+        {
+            var submission = _connection.Submissions.Where(m => m.Id == id).SingleOrDefault();
+
+            if (submission != null)
+            {
+                submission.DownVotes += 1;
+            }
+        }
+
         public IEnumerable<Submission> Search(string searchTerm)
         {
             string[] keywords = searchTerm.Split(' ');

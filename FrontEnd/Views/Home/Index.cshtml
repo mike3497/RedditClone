@@ -45,3 +45,41 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.btn-upvote').on('click', function (e) {
+                var parent = $(e.target).closest('.list-group-item');
+                var id = parent.data('id');
+
+                var button = $(e.target).closest('.btn-upvote');
+
+                $.post('@Url.Action("UpVote", "Submissions")/?id=' + id)
+                    .done(function (data) {
+                        console.log(data);
+
+                        button.removeClass('btn-light');
+                        button.addClass('btn-success');
+                    });
+            });
+
+            $('.btn-downvote').on('click', function (e) {
+                var parent = $(e.target).closest('.list-group-item');
+                var id = parent.data('id');
+
+                var button = $(e.target).closest('.btn-downvote');
+
+                $.post('@Url.Action("DownVote", "Submissions")/?id=' + id)
+                    .done(function (data) {
+                        console.log(data);
+
+                        button.removeClass('btn-light');
+                        button.addClass('btn-success');
+                    });
+            });
+        });
+
+    </script>    
+}

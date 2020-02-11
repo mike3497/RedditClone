@@ -103,5 +103,23 @@ namespace FrontEnd.Controllers
 
             return RedirectToAction("View", new { @id = id });
         }
+
+        [Authorize]
+        [HttpPost]
+        public JsonResult UpVote(int id)
+        {
+            _submissionManager.UpVote(id);
+
+            return Json("upvote");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public JsonResult DownVote(int id)
+        {
+            _submissionManager.DownVote(id);
+
+            return Json("downvote");
+        }
     }
 }

@@ -1,17 +1,26 @@
 ﻿@model Common.Models.SubmissionDetails
 
-<li class="list-group-item">
-    <h5>
-        @if (Model.Submission.Type == Common.Models.SubmissionType.Text)
-        {
-            <a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.Submission.Title</a>
-        }
-        else
-        {
-            <a href="@Model.Submission.URL">@Model.Submission.Title</a>
-        }
+<li class="list-group-item" data-id="@Model.Submission.Id">
+    <div class="row align-items-center">
+        <div class="col-1 text-center">
+            <button type="button" class="btn btn-light btn-sm btn-downvote"><i class="fa fa-arrow-down"></i></button>
+            <p class="d-inline mx-1 small">@Model.Score</p>
+            <button type="button" class="btn btn-light btn-sm btn-upvote"><i class="fa fa-arrow-up"></i></button>
+        </div>
+        <div class="col-11">
+            <h5>
+                @if (Model.Submission.Type == Common.Models.SubmissionType.Text)
+                {
+                    <a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.Submission.Title</a>
+                }
+                else
+                {
+                    <a href="@Model.Submission.URL">@Model.Submission.Title</a>
+                }
 
-    </h5>
-    <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by @Model.Submission.UserName</p>
-    <p class="mb-2"><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.NumComments comments</a></p>
+            </h5>
+            <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by @Model.Submission.UserName</p>
+            <p class="mb-2"><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.NumComments comments</a></p>
+        </div>
+    </div>
 </li>

@@ -10,6 +10,7 @@ namespace Common.Models
     {
         public Submission Submission { get; set; }
         public int NumComments { get; set; }
+        public int Score { get; set; }
         public string TimeSinceCreated { get; set; }
     }
 }
