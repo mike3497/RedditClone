@@ -38,17 +38,31 @@
                         <li class="list-group-item">
                             <p class="text-success small mb-2">@parent.UserName <span class="text-muted">@parent.TimeStamp</span></p>
                             <p class="mb-2">@parent.Content</p>
-                            <p><a class="btn-reply small" href="#" data-comment-id="@parent.Id">Reply</a></p>
+                            <p><a class="btn-reply small" href="#">Reply</a></p>
 
+                            <div class="d-none reply-form">
+                                @using (Html.BeginForm("Create", "Comments", FormMethod.Post, new { @class = "mb-2" }))
+                                {
+                                    <div class="form-group">
+                                        @Html.TextAreaFor(m => m.NewComment.Content, new { @class = "form-control" })
+                                    </div>
+
+                                    @Html.HiddenFor(m => m.Submission.Id)
+                                    @Html.Hidden("NewComment.ParentCommentId", parent.Id)
+
+                                    <button type="button" class="btn btn-light btn-sm btn-cancel">Cancel</button>
+                                    <button type="submit" class="btn btn-primary btn-sm">Reply</button>
+                                }
+                            </div>
+                            
                             <ul class="list-group">
                                 @foreach (var child in Model.Comments)
                                 {
                                     if (child.ParentCommentId == parent.Id)
                                     {
                                         <li class="list-group-item">
-                                            <p class="text-success small mb-2">@parent.UserName <span class="text-muted">@parent.TimeStamp</span></p>
-                                            <p class="mb-2">@parent.Content</p>
-                                            <p><a class="btn-reply small" href="#" data-comment-id="@parent.Id">Reply</a></p>
+                                            <p class="text-success small mb-2">@child.UserName <span class="text-muted">@child.TimeStamp</span></p>
+                                            <p class="mb-2">@child.Content</p>
                                         </li>
                                     }
                                 }
@@ -71,7 +85,7 @@
                 var parent = $(e.target).closest('.list-group-item');
                 var form = parent.find('.reply-form');
 
-                form.toggle('drop', 750);
+                form.toggleClass('d-none');
             });
 
             $('.btn-cancel').on('click', function (e) {
@@ -80,7 +94,7 @@
                 var parent = $(e.target).closest('.list-group-item');
                 var form = parent.find('.reply-form');
 
-                form.toggle('drop', 750);
+                form.toggleClass('d-none');
             });
         });
     </script>
