@@ -1,17 +1,41 @@
-﻿@model IEnumerable<Common.Models.SubmissionDetails>
+﻿@model FrontEnd.Models.SearchSubmissionViewModel
 
 @{
     ViewBag.Title = "Search";
 }
 
-<div class="row mt-3">
+<div class="row mt-3 mb-2">
+    <div class="col-12">
+        @using (Html.BeginForm("Search", "Submissions", FormMethod.Get))
+        {
+            <div class="input-group">
+                <input type="text" class="form-control" name="searchTerm" placeholder="Search...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row">
     <div class="col-sm-12">
-        <h2>Search</h2>
-        <ul class="list-group">
-            @foreach (var item in Model)
-            {
-                @Html.Partial("~/Views/Submissions/_SubmissionBox.cshtml", item)
-            }
-        </ul>
+        <h5>Search results for @Model.SearchTerm</h5>
+
+        @if (Model.SearchResults.Count() == 0)
+        {
+            <p>No results found.</p>
+        }
+        else
+        {
+            <ul class="list-group">
+                @foreach (var item in Model.SearchResults)
+                {
+                    @Html.Partial("~/Views/Submissions/_SubmissionBox.cshtml", item)
+                }
+            </ul>
+        }
+
+
     </div>
 </div>

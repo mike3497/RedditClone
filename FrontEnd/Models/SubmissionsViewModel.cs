@@ -18,4 +18,10 @@ namespace FrontEnd.Models
         public Submission Submission { get; set; }
         public SubmissionType Type { get; set; }
     }
+
+    public class SearchSubmissionViewModel
+    {
+        public IEnumerable<SubmissionDetails> SearchResults { get; set; }
+        public string SearchTerm { get; set; }
+    }
 }

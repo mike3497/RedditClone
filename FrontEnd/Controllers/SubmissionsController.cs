@@ -40,9 +40,13 @@ namespace FrontEnd.Controllers
 
         public ActionResult Search(string searchTerm)
         {
-            var list = _submissionManager.Search(searchTerm);
+            var vm = new SearchSubmissionViewModel
+            {
+                SearchResults = _submissionManager.Search(searchTerm),
+                SearchTerm = searchTerm
+            };
 
-            return View(list);
+            return View(vm);
         }
 
         [Authorize]

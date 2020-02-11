@@ -1,10 +1,24 @@
 ﻿@model FrontEnd.Models.SubmissionsViewModel
 
+@{ 
+    ViewBag.Title = Model.Submission.Title;
+}
+
 <div class="row mb-4 mt-3">
     <div class="col-sm-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">@Model.Submission.Title</h5>
+                @if (Model.Submission.Type == Common.Models.SubmissionType.Link)
+                {
+                    <h5 class="card-title">
+                        <a href="@Model.Submission.URL">@Model.Submission.Title</a>
+                    </h5>
+                }
+                else
+                {
+                    <h5 class="card-title">@Model.Submission.Title</h5>
+                }
+
                 <p class="small text-muted mb-2">submitted @Model.Submission.TimeStamp by @Model.Submission.UserName</p>
                 @Model.Submission.Content
             </div>
