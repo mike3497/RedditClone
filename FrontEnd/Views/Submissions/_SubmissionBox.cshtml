@@ -1,6 +1,6 @@
 ﻿@model Common.Models.SubmissionDetails
 
-<li class="list-group-item" data-id="@Model.Submission.Id">
+@*<li class="list-group-item" data-id="@Model.Submission.Id">
     <div class="row align-items-center">
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-1 text-center">
             @if (User.Identity.IsAuthenticated)
@@ -34,4 +34,42 @@
             <p class="mb-2"><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.NumComments comments</a></p>
         </div>
     </div>
+</li>*@
+
+<li class="list-group-item px-1" data-id="@Model.Submission.Id">
+    <table class="w-100">
+        <tbody>
+            <tr>
+                <td style="width: 10%;" class="text-center">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <button type="button" class="btn btn-light btn-sm btn-upvote"><i class="fa fa-arrow-up"></i></button>
+                        <p class="mb-0 score">@Model.Score</p>
+                        <button type="button" class="btn btn-light btn-sm btn-downvote"><i class="fa fa-arrow-down"></i></button>
+                    }
+                    else
+                    {
+                        <button type="button" class="btn btn-light btn-sm btn-upvote" disabled><i class="fa fa-arrow-up"></i></button>
+                        <p class="mb-0 score">@Model.Score</p>
+                        <button type="button" class="btn btn-light btn-sm btn-downvote" disabled><i class="fa fa-arrow-down"></i></button>
+                    }
+                </td>
+                <td style="width: 90%;" class="pl-2">
+                    <h5>
+                        @if (Model.Submission.Type == Common.Models.SubmissionType.Text)
+                        {
+                            <a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.Submission.Title</a>
+                        }
+                        else
+                        {
+                            <a href="@Model.Submission.URL">@Model.Submission.Title</a>
+                        }
+
+                    </h5>
+                    <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by @Model.Submission.UserName</p>
+                    <p class="mb-0"><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.NumComments comments</a></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </li>
