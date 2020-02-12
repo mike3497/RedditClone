@@ -3,9 +3,11 @@
 <li class="list-group-item" data-id="@Model.Submission.Id">
     <div class="row align-items-center">
         <div class="col-1 text-center">
-            <button type="button" class="btn btn-light btn-sm btn-downvote"><i class="fa fa-arrow-down"></i></button>
-            <p class="d-inline mx-1 small">@Model.Score</p>
             <button type="button" class="btn btn-light btn-sm btn-upvote"><i class="fa fa-arrow-up"></i></button>
+            <p class="mb-0 score">@Model.Score</p>
+            <button type="button" class="btn btn-light btn-sm btn-downvote"><i class="fa fa-arrow-down"></i></button>
+
+
         </div>
         <div class="col-11">
             <h5>

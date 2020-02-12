@@ -52,13 +52,18 @@
         $(document).ready(function () {
             $('.btn-upvote').on('click', function (e) {
                 var parent = $(e.target).closest('.list-group-item');
+
+                var score = $(e.target).closest('.col-1').find('.score');
+
+                console.log(score);
+
                 var id = parent.data('id');
 
                 var button = $(e.target).closest('.btn-upvote');
 
                 $.post('@Url.Action("UpVote", "Submissions")/?id=' + id)
                     .done(function (data) {
-                        console.log(data);
+                        score.html(data);
 
                         button.removeClass('btn-light');
                         button.addClass('btn-success');

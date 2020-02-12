@@ -12,10 +12,12 @@ namespace Managers.Managers
     public class SubmissionManager
     {
         private readonly ISubmissionRepository _submissionRepository;
+        private readonly SubmissionVoteManager _submissionVoteManager;
 
-        public SubmissionManager(ISubmissionRepository submissionRepository)
+        public SubmissionManager(ISubmissionRepository submissionRepository, SubmissionVoteManager submissionVoteManager)
         {
             _submissionRepository = submissionRepository;
+            _submissionVoteManager = submissionVoteManager;
         }
 
         public IEnumerable<Submission> GetAll()

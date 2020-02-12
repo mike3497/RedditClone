@@ -14,11 +14,13 @@ namespace FrontEnd.Controllers
     {
         private readonly SubmissionManager _submissionManager;
         private readonly CommentManager _commentManager;
+        private readonly SubmissionVoteManager _submissionVoteManager;
 
-        public SubmissionsController(SubmissionManager submissionManager, CommentManager commentManager)
+        public SubmissionsController(SubmissionManager submissionManager, CommentManager commentManager, SubmissionVoteManager submissionVoteManager)
         {
             _submissionManager = submissionManager;
             _commentManager = commentManager;
+            _submissionVoteManager = submissionVoteManager;
         }
 
         public ActionResult View(int id)
@@ -110,7 +112,11 @@ namespace FrontEnd.Controllers
         {
             _submissionManager.UpVote(id);
 
-            return Json("upvote");
+            string userId = User.Identity.GetUserId();
+
+            _submissionVoteManager.UpVote(id, userId);
+
+            return Json(_submissionManager.GetScore(id), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -119,7 +125,11 @@ namespace FrontEnd.Controllers
         {
             _submissionManager.DownVote(id);
 
-            return Json("downvote");
+            string userId = User.Identity.GetUserId();
+
+            _submissionVoteManager.DownVote(id, userId);
+
+            return Json(_submissionManager.GetScore(id), JsonRequestBehavior.AllowGet);
         }
     }
 }

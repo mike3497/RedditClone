@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -99,10 +100,15 @@
     <Compile Include="Migrations\202002060237151_ModifySubmission.designer.cs">
       <DependentUpon>202002060237151_ModifySubmission.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002120209330_AddSubmissionVotes.cs" />
+    <Compile Include="Migrations\202002120209330_AddSubmissionVotes.designer.cs">
+      <DependentUpon>202002120209330_AddSubmissionVotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\SubmissionRepository.cs" />
+    <Compile Include="Repositories\SubmissionVoteRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002060237151_ModifySubmission.resx">
       <DependentUpon>202002060237151_ModifySubmission.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002120209330_AddSubmissionVotes.resx">
+      <DependentUpon>202002120209330_AddSubmissionVotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

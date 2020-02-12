@@ -12,5 +12,6 @@ namespace DataAccess
     {
         public DbSet<Submission> Submissions { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<SubmissionVote> SubmissionVotes { get; set; }
     }
 }

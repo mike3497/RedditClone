@@ -20,10 +20,12 @@ namespace FrontEnd
             // Repositories
             container.RegisterType<ISubmissionRepository, SubmissionRepository>();
             container.RegisterType<ICommentRepository, CommentRepository>();
+            container.RegisterType<ISubmissionVoteRepository, SubmissionVoteRepository>();
 
             // Managers
             container.RegisterType<SubmissionManager, SubmissionManager>();
             container.RegisterType<CommentManager, CommentManager>();
+            container.RegisterType<SubmissionVoteManager, SubmissionVoteManager>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

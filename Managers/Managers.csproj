@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Managers\CommentManager.cs" />
     <Compile Include="Managers\SubmissionManager.cs" />
+    <Compile Include="Managers\SubmissionVoteManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
