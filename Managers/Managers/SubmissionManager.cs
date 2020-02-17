@@ -117,6 +117,7 @@ namespace Managers.Managers
 
         private SubmissionDetails SubmissionToSubmissionDetails(Submission submission)
         {
+            // Get time
             TimeSpan time = (DateTime.Now - submission.TimeStamp);
             string submissionTime;
 
@@ -140,8 +141,12 @@ namespace Managers.Managers
             {
                 Submission = submission,
                 NumComments = GetNumberOfCommentsBySubmissionId(submission.Id),
-                Score = GetScore(submission.Id),
-                TimeSinceCreated = submissionTime
+                TimeSinceCreated = submissionTime,
+                VoteButtons = new VoteButtons
+                {
+                    Score  = GetScore(submission.Id),
+                    UserVoteType = _submissionVoteManager.GetUserVote(submission.Id, submission.UserId)
+                }
             };
 
             return submissionDetails;

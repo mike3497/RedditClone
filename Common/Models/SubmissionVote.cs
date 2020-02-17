@@ -18,6 +18,7 @@ namespace Common.Models
     public enum VoteType
     {
         UpVote,
-        DownVote
+        DownVote,
+        None
     }
 }

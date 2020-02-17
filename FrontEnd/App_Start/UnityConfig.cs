@@ -16,6 +16,7 @@ namespace FrontEnd
 			var container = new UnityContainer();
 
             container.RegisterType<AccountController>(new InjectionConstructor());
+            container.RegisterType<ManageController>(new InjectionConstructor());
 
             // Repositories
             container.RegisterType<ISubmissionRepository, SubmissionRepository>();

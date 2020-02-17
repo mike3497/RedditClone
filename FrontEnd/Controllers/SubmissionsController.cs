@@ -110,11 +110,13 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public JsonResult UpVote(int id)
         {
-            _submissionManager.UpVote(id);
-
             string userId = User.Identity.GetUserId();
 
-            _submissionVoteManager.UpVote(id, userId);
+            if (!_submissionVoteManager.HasUserVoted(id, userId))
+            {
+                _submissionManager.UpVote(id);
+                _submissionVoteManager.UpVote(id, userId);
+            }
 
             return Json(_submissionManager.GetScore(id), JsonRequestBehavior.AllowGet);
         }
@@ -123,11 +125,13 @@ namespace FrontEnd.Controllers
         [HttpPost]
         public JsonResult DownVote(int id)
         {
-            _submissionManager.DownVote(id);
-
             string userId = User.Identity.GetUserId();
 
-            _submissionVoteManager.DownVote(id, userId);
+            if (!_submissionVoteManager.HasUserVoted(id, userId))
+            {
+                _submissionManager.DownVote(id);
+                _submissionVoteManager.DownVote(id, userId);
+            }
 
             return Json(_submissionManager.GetScore(id), JsonRequestBehavior.AllowGet);
         }

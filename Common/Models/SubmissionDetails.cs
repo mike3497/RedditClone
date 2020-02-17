@@ -12,5 +12,6 @@ namespace Common.Models
         public int NumComments { get; set; }
         public int Score { get; set; }
         public string TimeSinceCreated { get; set; }
+        public VoteButtons VoteButtons { get; set; }
     }
 }

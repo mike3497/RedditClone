@@ -107,6 +107,11 @@ namespace DataAccess.Repositories
             var vote = _connection.SubmissionVotes.Where(m => m.SubmissionId == submissionId)
                 .Where(m => m.UserId == userId)
                 .SingleOrDefault();
+            
+            if (vote == null)
+            {
+                return VoteType.None;
+            }
 
             return vote.Type;
         }

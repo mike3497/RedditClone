@@ -1,0 +1,29 @@
+﻿@model Common.Models.VoteButtons
+
+@if (User.Identity.IsAuthenticated)
+{
+    if (Model.UserVoteType == Common.Models.VoteType.UpVote)
+    {
+        <button type="button" class="btn btn-primary btn-sm btn-upvote" disabled><i class="fa fa-arrow-up"></i></button>
+        <p class="mb-0 score">@Model.Score</p>
+        <button type="button" class="btn btn-light btn-sm btn-downvote" disabled><i class="fa fa-arrow-down"></i></button>
+    }
+    else if (Model.UserVoteType == Common.Models.VoteType.DownVote)
+    {
+        <button type="button" class="btn btn-light btn-sm btn-upvote" disabled><i class="fa fa-arrow-up"></i></button>
+        <p class="mb-0 score">@Model.Score</p>
+        <button type="button" class="btn btn-primary btn-sm btn-downvote" disabled><i class="fa fa-arrow-down"></i></button>
+    }
+    else
+    {
+        <button type="button" class="btn btn-light btn-sm btn-upvote"><i class="fa fa-arrow-up"></i></button>
+        <p class="mb-0 score">@Model.Score</p>
+        <button type="button" class="btn btn-light btn-sm btn-downvote"><i class="fa fa-arrow-down"></i></button>
+    }
+}
+else
+{
+    <button type="button" class="btn btn-light btn-sm btn-upvote" disabled><i class="fa fa-arrow-up"></i></button>
+    <p class="mb-0 score">@Model.Score</p>
+    <button type="button" class="btn btn-light btn-sm btn-downvote" disabled><i class="fa fa-arrow-down"></i></button>
+}
