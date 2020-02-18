@@ -31,4 +31,10 @@ namespace Common.Models
         Text,
         Link
     }
+
+    public enum SortType
+    {
+        Date,
+        Score
+    }
 }

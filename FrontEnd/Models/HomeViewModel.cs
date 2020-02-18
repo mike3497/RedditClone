@@ -11,5 +11,6 @@ namespace FrontEnd.Models
         public IEnumerable<SubmissionDetails> Submissions { get; set; }
         public int PageNumber { get; set; }
         public int PageCount { get; set; }
+        public SortType SortType { get; set; }
     }
 }

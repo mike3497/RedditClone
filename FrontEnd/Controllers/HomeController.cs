@@ -18,7 +18,7 @@ namespace FrontEnd.Controllers
             _submissionManager = submissionManager;
         }
 
-        public ActionResult Index(int page = 1, int numPerPage = 5)
+        public ActionResult Index(int page = 1, int numPerPage = 5, SortType sort = SortType.Date)
         {
             var vm = new HomeViewModel();
 
@@ -27,15 +27,17 @@ namespace FrontEnd.Controllers
 
             try
             {
-                vm.Submissions = _submissionManager.GetPaged(page, numPerPage);
+                vm.Submissions = _submissionManager.GetPaged(page, numPerPage, sort);
                 vm.PageNumber = page;
                 vm.PageCount = pageCount;
+                vm.SortType = sort;
             }
             catch (Exception ex)
             {
-                vm.Submissions = _submissionManager.GetPaged(1, numPerPage);
+                vm.Submissions = _submissionManager.GetPaged(1, numPerPage, SortType.Date);
                 vm.PageNumber = 1;
                 vm.PageCount = pageCount;
+                vm.SortType = SortType.Date;
             }
 
             return View(vm);

@@ -25,9 +25,9 @@ namespace Managers.Managers
             return _submissionRepository.GetAll();
         }
 
-        public IEnumerable<SubmissionDetails> GetPaged(int page, int numPerPage)
+        public IEnumerable<SubmissionDetails> GetPaged(int page, int numPerPage, SortType sortType)
         {
-            var list = _submissionRepository.GetPaged(page, numPerPage);
+            var list = _submissionRepository.GetPaged(page, numPerPage, sortType);
             List<SubmissionDetails> result = new List<SubmissionDetails>();
 
             foreach(var item in list)

@@ -22,10 +22,21 @@ namespace DataAccess.Repositories
             return _connection.Submissions.ToList();
         }
 
-        public IEnumerable<Submission> GetPaged(int page, int numPerPage)
+        public IEnumerable<Submission> GetPaged(int page, int numPerPage, SortType sortType)
         {
-            return _connection.Submissions.OrderBy(m => m.TimeStamp)
-                .Skip((page - 1) * numPerPage)
+            var list = _connection.Submissions.ToList();
+
+            switch (sortType)
+            {
+                case SortType.Score:
+                    // Implement
+                    break;
+                case SortType.Date:
+                    list = list.OrderByDescending(m => m.TimeStamp).ToList();
+                    break;
+            }
+
+            return list.Skip((page - 1) * numPerPage)
                 .Take(numPerPage)
                 .ToList();
         }
