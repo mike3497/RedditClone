@@ -40,6 +40,22 @@ namespace Managers.Managers
             return result;
         }
 
+        public IEnumerable<SubmissionDetails> GetSubmissionsByUserId(string userId)
+        {
+            var submissions = _submissionRepository.GetSubmissionsByUserId(userId);
+
+            List<SubmissionDetails> list = new List<SubmissionDetails>();
+
+            foreach (var item in submissions)
+            {
+                var submissionDetails = SubmissionToSubmissionDetails(item);
+
+                list.Add(submissionDetails);
+            }
+
+            return list;
+        }
+
         public int GetTotalCount()
         {
             return _submissionRepository.GetTotalCount();

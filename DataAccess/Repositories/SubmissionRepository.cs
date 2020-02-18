@@ -41,6 +41,11 @@ namespace DataAccess.Repositories
                 .ToList();
         }
 
+        public IEnumerable<Submission> GetSubmissionsByUserId(string userId)
+        {
+            return _connection.Submissions.Where(m => m.UserId == userId).ToList();
+        }
+
         public int GetTotalCount()
         {
             return _connection.Submissions.Count();

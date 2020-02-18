@@ -12,6 +12,7 @@ namespace Common.Repositories
         int GetNumberOfCommentsBySubmissionId(int id);
         IEnumerable<Submission> Search(string searchTerm);
         IEnumerable<Submission> GetPaged(int page, int numPerPage, SortType sortType);
+        IEnumerable<Submission> GetSubmissionsByUserId(string userId);
         int GetTotalCount();
         void UpVote(int id);
         void DownVote(int id);

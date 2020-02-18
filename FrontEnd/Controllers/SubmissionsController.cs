@@ -119,6 +119,13 @@ namespace FrontEnd.Controllers
             return PartialView("_VoteButtons", voteButtons);
         }
 
+        public ActionResult UserSubmissions(string userId)
+        {
+            var list = _submissionManager.GetSubmissionsByUserId(userId);
+
+            return View(list);
+        }
+
         [Authorize]
         [HttpPost]
         public JsonResult UpVote(int id)
