@@ -161,12 +161,7 @@ namespace Managers.Managers
             {
                 Submission = submission,
                 NumComments = GetNumberOfCommentsBySubmissionId(submission.Id),
-                TimeSinceCreated = submissionTime,
-                VoteButtons = new VoteButtons
-                {
-                    Score  = GetScore(submission.Id),
-                    UserVoteType = _submissionVoteManager.GetUserVote(submission.Id, submission.UserId)
-                }
+                TimeSinceCreated = submissionTime
             };
 
             return submissionDetails;

@@ -106,6 +106,19 @@ namespace FrontEnd.Controllers
             return RedirectToAction("View", new { @id = id });
         }
 
+        public PartialViewResult VoteButtons(int submissionId)
+        {
+            string userId = User.Identity.GetUserId();
+
+            VoteButtons voteButtons = new VoteButtons
+            {
+                Score = _submissionManager.GetScore(submissionId),
+                UserVoteType = _submissionVoteManager.GetUserVote(submissionId, userId)
+            };
+
+            return PartialView("_VoteButtons", voteButtons);
+        }
+
         [Authorize]
         [HttpPost]
         public JsonResult UpVote(int id)

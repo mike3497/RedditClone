@@ -5,7 +5,7 @@
         <tbody>
             <tr>
                 <td style="width: 10%;" class="text-center">
-                    @Html.Partial("~/Views/Submissions/_VoteButtons.cshtml", Model.VoteButtons)
+                    @Html.Action("VoteButtons", "Submissions", new { @submissionId = Model.Submission.Id })
                 </td>
                 <td style="width: 90%;" class="pl-2">
                     <h5>
