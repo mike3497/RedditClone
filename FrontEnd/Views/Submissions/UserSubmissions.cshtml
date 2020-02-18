@@ -1,7 +1,25 @@
-﻿
+﻿@model FrontEnd.Models.UserSubmissionsViewModel
+
 @{
     ViewBag.Title = "UserSubmissions";
 }
 
-<h2>UserSubmissions</h2>
+<div class="row mt-4">
+    <div class="col-sm-12">
+        <h5>@Model.UserName Submissions</h5>
 
+        @if (Model.Submissions.Count() == 0)
+        {
+            <p>No results found.</p>
+        }
+        else
+        {
+            <ul class="list-group">
+                @foreach (var item in Model.Submissions)
+                {
+                    @Html.Partial("~/Views/Submissions/_SubmissionBox.cshtml", item)
+                }
+            </ul>
+        }
+    </div>
+</div>

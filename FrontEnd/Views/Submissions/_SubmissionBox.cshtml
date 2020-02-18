@@ -19,7 +19,7 @@
                         }
 
                     </h5>
-                    <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by @Model.Submission.UserName</p>
+                    <p class="small text-muted mb-2">submitted @Model.TimeSinceCreated by <a href="@Url.Action("UserSubmissions", "Submissions", new { @userId = Model.Submission.UserId })">@Model.Submission.UserName</a></p>
                     <p class="mb-0"><a href="@Url.Action("View", "Submissions", new { @id = Model.Submission.Id })">@Model.NumComments comments</a></p>
                 </td>
             </tr>

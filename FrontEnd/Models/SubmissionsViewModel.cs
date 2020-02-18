@@ -24,4 +24,10 @@ namespace FrontEnd.Models
         public IEnumerable<SubmissionDetails> SearchResults { get; set; }
         public string SearchTerm { get; set; }
     }
+
+    public class UserSubmissionsViewModel
+    {
+        public IEnumerable<SubmissionDetails> Submissions { get; set; }
+        public string UserName { get; set; }
+    }
 }
