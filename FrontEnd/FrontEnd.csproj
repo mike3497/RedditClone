@@ -419,6 +419,7 @@
     <Content Include="Views\Submissions\Search.cshtml" />
     <Content Include="Views\Submissions\_SubmissionBox.cshtml" />
     <Content Include="Views\Submissions\_VoteButtons.cshtml" />
+    <Content Include="Views\Submissions\_Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

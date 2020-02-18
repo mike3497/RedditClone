@@ -22,6 +22,19 @@ namespace DataAccess.Repositories
             return _connection.Submissions.ToList();
         }
 
+        public IEnumerable<Submission> GetPaged(int page, int numPerPage)
+        {
+            return _connection.Submissions.OrderBy(m => m.TimeStamp)
+                .Skip((page - 1) * numPerPage)
+                .Take(numPerPage)
+                .ToList();
+        }
+
+        public int GetTotalCount()
+        {
+            return _connection.Submissions.Count();
+        }
+
         public int GetNumberOfCommentsBySubmissionId(int id)
         {
             return _connection.Comments.Where(m => m.SubmissionId == id).Count();

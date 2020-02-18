@@ -25,6 +25,26 @@ namespace Managers.Managers
             return _submissionRepository.GetAll();
         }
 
+        public IEnumerable<SubmissionDetails> GetPaged(int page, int numPerPage)
+        {
+            var list = _submissionRepository.GetPaged(page, numPerPage);
+            List<SubmissionDetails> result = new List<SubmissionDetails>();
+
+            foreach(var item in list)
+            {
+                SubmissionDetails submissionDetails = SubmissionToSubmissionDetails(item);
+
+                result.Add(submissionDetails);
+            }
+
+            return result;
+        }
+
+        public int GetTotalCount()
+        {
+            return _submissionRepository.GetTotalCount();
+        }
+
         public int GetNumberOfCommentsBySubmissionId(int id)
         {
             return _submissionRepository.GetNumberOfCommentsBySubmissionId(id);
