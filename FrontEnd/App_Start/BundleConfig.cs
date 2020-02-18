@@ -23,6 +23,9 @@ namespace FrontEnd
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/voting").Include(
+                      "~/Scripts/custom/voting.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap-flatly.min.css",
                       "~/Content/site.css",
