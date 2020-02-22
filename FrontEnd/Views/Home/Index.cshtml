@@ -22,8 +22,8 @@
         <div class="mb-2">
             <span class="small">Sort by: </span>
             <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="@Url.Action("Index", "Home", new { @page = Model.PageNumber, @sortType = Common.Models.SortType.Date })" class="btn @(Model.SortType == Common.Models.SortType.Date ? "btn-primary" : "btn-light") btn-sm">Date</a>
-                <a href="@Url.Action("Index", "Home", new { @page = Model.PageNumber, @sortType = Common.Models.SortType.Score })" class="btn @(Model.SortType == Common.Models.SortType.Score ? "btn-primary" : "btn-light") btn-sm">Score</a>
+                <a href="@Url.Action("Index", "Home", new { @page = Model.PageNumber, @sort = Common.Models.SortType.Date })" class="btn @(Model.SortType == Common.Models.SortType.Date ? "btn-primary" : "btn-light") btn-sm">Date</a>
+                <a href="@Url.Action("Index", "Home", new { @page = Model.PageNumber, @sort = Common.Models.SortType.Score })" class="btn @(Model.SortType == Common.Models.SortType.Score ? "btn-primary" : "btn-light") btn-sm">Score</a>
             </div>
         </div>
         

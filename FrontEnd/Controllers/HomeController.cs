@@ -24,21 +24,10 @@ namespace FrontEnd.Controllers
 
             double total = _submissionManager.GetTotalCount();
             int pageCount = (int)Math.Ceiling(total / numPerPage);
-
-            try
-            {
-                vm.Submissions = _submissionManager.GetPaged(page, numPerPage, sort);
-                vm.PageNumber = page;
-                vm.PageCount = pageCount;
-                vm.SortType = sort;
-            }
-            catch (Exception ex)
-            {
-                vm.Submissions = _submissionManager.GetPaged(1, numPerPage, SortType.Date);
-                vm.PageNumber = 1;
-                vm.PageCount = pageCount;
-                vm.SortType = SortType.Date;
-            }
+            vm.Submissions = _submissionManager.GetPaged(page, numPerPage, sort);
+            vm.PageNumber = page;
+            vm.PageCount = pageCount;
+            vm.SortType = sort;
 
             return View(vm);
         }

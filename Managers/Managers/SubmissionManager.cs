@@ -27,17 +27,22 @@ namespace Managers.Managers
 
         public IEnumerable<SubmissionDetails> GetPaged(int page, int numPerPage, SortType sortType)
         {
-            var list = _submissionRepository.GetPaged(page, numPerPage, sortType);
-            List<SubmissionDetails> result = new List<SubmissionDetails>();
+            // Get all
+            var list = GetSubmissionsWithDetails();
 
-            foreach(var item in list)
+            // Sort
+            switch (sortType)
             {
-                SubmissionDetails submissionDetails = SubmissionToSubmissionDetails(item);
-
-                result.Add(submissionDetails);
+                case SortType.Date:
+                    list = list.OrderByDescending(m => m.Submission.TimeStamp);
+                    break;
+                case SortType.Score:
+                    list = list.OrderByDescending(m => m.Score);
+                    break;
             }
 
-            return result;
+            return list.Skip((page - 1) * numPerPage)
+                .Take(numPerPage);
         }
 
         public IEnumerable<SubmissionDetails> GetSubmissionsByUserId(string userId)
@@ -128,13 +133,6 @@ namespace Managers.Managers
             _submissionRepository.SaveChanges();
         }
 
-        public int GetScore(int id)
-        {
-            var submission = _submissionRepository.Read(id);
-
-            return (submission.UpVotes - submission.DownVotes);
-        }
-
         public IEnumerable<SubmissionDetails> Search(string searchTerm)
         {
             var search = _submissionRepository.Search(searchTerm);
@@ -153,7 +151,19 @@ namespace Managers.Managers
 
         private SubmissionDetails SubmissionToSubmissionDetails(Submission submission)
         {
-            // Get time
+            var submissionDetails = new SubmissionDetails
+            {
+                Submission = submission,
+                NumComments = GetNumberOfCommentsBySubmissionId(submission.Id),
+                TimeSinceCreated = GetTimeSince(submission),
+                Score = GetScore(submission.Id)
+            };
+
+            return submissionDetails;
+        }
+
+        public string GetTimeSince(Submission submission)
+        {
             TimeSpan time = (DateTime.Now - submission.TimeStamp);
             string submissionTime;
 
@@ -173,14 +183,14 @@ namespace Managers.Managers
                 submissionTime = String.Format("{0:0} {1} ago", time.TotalDays, "day".Pluralize((int)time.TotalDays));
             }
 
-            var submissionDetails = new SubmissionDetails
-            {
-                Submission = submission,
-                NumComments = GetNumberOfCommentsBySubmissionId(submission.Id),
-                TimeSinceCreated = submissionTime
-            };
+            return submissionTime;
+        }
 
-            return submissionDetails;
+        public int GetScore(int id)
+        {
+            var submission = _submissionRepository.Read(id);
+
+            return (submission.UpVotes - submission.DownVotes);
         }
     }
 }
